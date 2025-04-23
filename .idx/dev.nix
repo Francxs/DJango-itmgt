@@ -2,14 +2,15 @@
 # see: https://firebase.google.com/docs/studio/customize-workspace
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
+  channel = "stable-24.11"; # or "unstable"
 
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.python312  # Your Python version
     pkgs.python312Packages.pip # You might not strictly need this if you declare all dependencies
     pkgs.python312Packages.django
-    pkgs.python312Packages.mysqlclient
+    pkgs.python312Packages.pymysql
+    pkgs.mysql84
     # Add other Python dependencies here, e.g.,
     # pkgs.python312Packages.djangorestframework
   ];
@@ -27,12 +28,12 @@
       enable = true;
       previews = {
         # web = {
-        #   # Example: run "python manage.py runserver 0.0.0.0:$PORT"
-        #   command = ["python" "manage.py" "runserver" "0.0.0.0:$PORT"];
-        #   manager = "web";
-        #   env = {
-        #     PYTHONPATH = ./.;
-        #   };
+          # Example: run "python manage.py runserver 0.0.0.0:$PORT"
+          # command = ["python" "manage.py" "runserver" "0.0.0.0:$PORT"];
+          # manager = "web";
+          # env = {
+          #   PYTHONPATH = ./.;
+          # };
         # };
       };
     };
