@@ -8,6 +8,7 @@
   packages = [
     pkgs.python312
     pkgs.python312Packages.pip
+    pkgs.python312Packages.requests
   ];
 
   # Sets environment variables in the workspace
