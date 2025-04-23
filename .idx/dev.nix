@@ -2,17 +2,12 @@
 # see: https://firebase.google.com/docs/studio/customize-workspace
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-24.11"; # or "unstable"
+  channel = "stable-24.05"; # or "unstable"
 
   # Use https://search.nixos.org/packages to find packages
   packages = [
-    pkgs.python312  # Your Python version
-    pkgs.python312Packages.pip # You might not strictly need this if you declare all dependencies
-    pkgs.python312Packages.django
-    pkgs.python312Packages.pymysql
-    pkgs.mysql84
-    # Add other Python dependencies here, e.g.,
-    # pkgs.python312Packages.djangorestframework
+    pkgs.python312
+    pkgs.python312Packages.pip
   ];
 
   # Sets environment variables in the workspace
@@ -28,12 +23,14 @@
       enable = true;
       previews = {
         # web = {
-          # Example: run "python manage.py runserver 0.0.0.0:$PORT"
-          # command = ["python" "manage.py" "runserver" "0.0.0.0:$PORT"];
-          # manager = "web";
-          # env = {
-          #   PYTHONPATH = ./.;
-          # };
+        #   # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
+        #   # and show it in IDX's web preview panel
+        #   command = ["npm" "run" "dev"];
+        #   manager = "web";
+        #   env = {
+        #     # Environment variables to set for your server
+        #     PORT = "$PORT";
+        #   };
         # };
       };
     };
@@ -42,12 +39,14 @@
     workspace = {
       # Runs when a workspace is first created
       onCreate = {
-        # You likely don't need to run pip install here anymore
-        # install-python-deps = "pip install -r /home/user/DJango-itmgt/requirements.txt";
+        # Example: install JS dependencies from NPM
+        # npm-install = "npm install";
       };
       # Runs when the workspace is (re)started
       onStart = {
-        # You can add commands to run when the workspace starts here
+        # Example: start a background task to watch and re-build backend code
+        # watch-backend = "npm run watch-backend";
+        pip-install = "pip install -r requirements.txt";
       };
     };
   };
